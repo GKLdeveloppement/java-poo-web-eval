@@ -10,10 +10,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class ArtistController {
     public Long countArtist() {
         return artistRepository.count();
     }
-     */
+    */
 
     //ID
     @RequestMapping(value = "/{id}",
@@ -59,7 +61,7 @@ public class ArtistController {
         return artist;
     }
 
-    //Pagination artistes (mettre "?page=2" dans l'url pour changer de page)
+    //Pagination artistes
     @RequestMapping(value="",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -73,33 +75,27 @@ public class ArtistController {
         return artistRepository.findAll(pageable);
     }
 
-    //Partie inférieur encore non testé (bug affichage api)
-/*
+
     //Add artist
-    @RequestMapping(
-            value="",
+    @RequestMapping(value="",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces =MediaType.APPLICATION_JSON_VALUE)
     public Artist addArtist(
             @RequestBody Artist artist){
-        if(artistRepository.findByNameIgnoreCase(artist.getName())!=null){
-            //409
-            throw new EntityExistsException("Artiste déjà existant dans la bdd");
+        if(artistRepository.findByName(artist.getName())!=null){
+            throw new EntityExistsException("Déjà présent dans la bdd");
         }else {
             return artistRepository.save(artist);
         }
     }
 
     //Update artist
-    @RequestMapping(
-            value="{id}",
+    @RequestMapping(value="{id}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces =MediaType.APPLICATION_JSON_VALUE
-    )
-    public Artist updateArtist(
-            @RequestBody Artist artist,@PathVariable Integer id){
+            produces =MediaType.APPLICATION_JSON_VALUE)
+    public Artist updateArtist(@RequestBody Artist artist,@PathVariable Integer id){
         return artistRepository.save(artist);
     }
 
@@ -112,5 +108,4 @@ public class ArtistController {
         albumRepository.deleteByArtistId(id);
     }
 
- */
 }

@@ -27,9 +27,11 @@ public class MyRunner implements CommandLineRunner{
             //Partie requetes test code
             //System.out.println(artistRepository.count());
             System.out.println(albumRepository.findById(2));
+            //System.out.println(albumRepository.findById(1));
             //System.out.println(artistRepository.findByNameIgnoreCase("accept"));
             //System.out.println(artistRepository.findByContainName("rosmi"));
-            System.out.println(artistRepository.findByContainName("ABCDEF"));
+            //System.out.println(artistRepository.findByContainName("ABCDEF"));
+            //System.out.println(artistRepository.findByName("superSayan"));
 
             //System.out.println(albumRepository.findAll());
 

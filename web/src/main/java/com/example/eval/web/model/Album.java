@@ -8,6 +8,10 @@ import java.util.Objects;
 @Table(name = "album")
 public class Album {
 
+    @ManyToOne
+    @JoinColumn(name = "ArtistId")
+    private Artist artist;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AlbumId")
@@ -15,10 +19,6 @@ public class Album {
 
     @Column(name = "title")
     private String title;
-
-    @ManyToOne
-    @JoinColumn(name = "artistId")
-    private Artist artist;
 
 
     public Album(){ }

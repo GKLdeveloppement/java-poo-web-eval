@@ -16,7 +16,5 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleEntityExistsException(EntityExistsException e){
-        return e.getMessage();
-    }
+    public String handleEntityExistsException(EntityExistsException e){return e.getMessage();}
 }

@@ -17,5 +17,7 @@ public interface ArtistRepository extends PagingAndSortingRepository<Artist, Int
     @Query(value = "SELECT * FROM artist WHERE artist.Name LIKE CONCAT('%',:name,'%')",nativeQuery = true)
     List<Artist> findByContainName(@Param("name") String name);
 
+    Artist findByName(String name);
+
 
 }

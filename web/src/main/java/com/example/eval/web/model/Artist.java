@@ -23,6 +23,7 @@ public class Artist {
 
 
     //Clé étrangère pour avoir plusieurs albums pour un artiste
+    //On met en place les cascades pour les dépendances
     @OneToMany(mappedBy = "artist", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("artist")
     private List<Album> albums;
